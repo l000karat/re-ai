@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AI-ассистенты для риелторов: отвечают, квалифицируют лидов, ведут до просмотра и сделки." />
+  <title>AI-ассистент для риелторов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Моно-эстетика, минимализм -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=234" />
+
+<style>
+  /* FORCE ABOUT LAYOUT (overrides everything) */
+  .container.about{
+    display:grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap:16px !important;
+    align-items:stretch !important;
+  }
+  .container.about > .about__left,
+  .container.about > .about__right{
+    height:100% !important;
+    align-self:stretch !important;
+  }
+  .about__left{
+    display:grid !important;
+    grid-template-rows:auto 1fr auto !important;
+  }
+  .about__people{
+    height:100% !important;
+    display:grid !important;
+    grid-template-rows:1fr 1fr !important;
+    gap:12px !important;
+    margin-top:16px !important;
+  }
+  .about__card{
+    height:100% !important;
+  }
+</style>
+
+<style>
+/* TEST: ABOUT mobile force 1 column */
+@media (max-width: 1200px), (hover: none) and (pointer: coarse) {
+  section#about .container.about{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:16px !important;
+  }
+  section#about .about__left,
+  section#about .about__right{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+  section#about .about__cards,
+  section#about .timeline{
+    width:100% !important;
+  }
+  section#about .about__card,
+  section#about .timeline .tItem{
+    width:100% !important;
+    max-width:100% !important;
+  }
+}
+</style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">RE:AI</span>
+      </div>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#product">Продукт</a>
+        <a href="#cases">Отзывы</a>
+        <a href="#about">О нас</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile" id="mobileNav" hidden>
+      <div class="container mobile__inner">
+        <a href="#product" class="mLink">Продукт</a>
+        <a href="#cases" class="mLink">Отзывы</a>
+        <a href="#about" class="mLink">О нас</a>
+        <a href="#contact" class="mLink">Контакты</a>
+        <a href="#contact" class="btn btn--solid mLink">Запросить демо</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="kicker">
+            <span class="dot" aria-hidden="true"></span>
+            AI-ассистент для агентств недвижимости
+          </div>
+
+          <h1 class="h1">
+            Больше заявок. Меньше рутины.<br />
+            <span class="muted">Быстрее сделки.</span>
+          </h1>
+
+          <p class="lead">
+            Ассистент отвечает 24/7, квалифицирует лидов, записывает на просмотр и доводит до контакта с агентом.
+            
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--solid" href="#contact">Запросить демо</a>
+            <a class="btn btn--ghost" href="#product">Как это работает</a>
+          </div>
+
+          <div class="trust">
+            <div class="trust__item">
+              <div class="trust__num">24/7</div>
+              <div class="trust__label">ответы без пропусков</div>
+            </div>
+            <div class="trust__item">
+              <div class="trust__num">+30%</div>
+              <div class="trust__label">к конверсии в контакт*</div>
+            </div>
+            <div class="trust__item">
+              <div class="trust__num">0</div>
+              <div class="trust__label">“сливов” из-за игнора</div>
+            </div>
+          </div>
+
+          <p class="fineprint">
+            
+          </p>
+        </div>
+
+        <!-- Минималистичная “панель” справа -->
+        <div class="hero__panel" aria-label="Превью сценариев">
+          <div class="panel">
+            <div class="panel__top">
+              <span class="pill">Сценарии</span>
+              <span class="mono">v1.0</span>
+            </div>
+
+            <div class="panel__block">
+              <div class="mono small">Входящий лид →</div>
+              <div class="panel__line"><span class="tag">квалификация</span> бюджет / район / сроки</div>
+              <div class="panel__line"><span class="tag">возражения</span> “дорого”, “подумаю”, “без звонка”</div>
+              <div class="panel__line"><span class="tag">запись</span> календарь / просмотр / подтверждение</div>
+              <div class="panel__line"><span class="tag">догрев</span> подборки, фото, ответы, напоминания</div>
+            </div>
+
+            <div class="panel__block">
+              <div class="mono small">Каналы →</div>
+              <div class="panel__line">Telegram · WhatsApp · Авито · сайт</div>
+            </div>
+
+            <div class="panel__bottom">
+              <span class="mono small">Скорость реакции</span>
+              <span class="mono">~ 2 сек</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT -->
+    <section id="product" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2">Что вы получаете</h2>
+          <p class="sub">
+            Максимально понятный продукт: ассистент берёт на себя диалоги и доводит до нужного действия.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card" data-reveal>
+            <h3>Забираем рутину</h3>
+            <p>Вопросы, уточнения, повторяющиеся ответы, подборки, напоминания — всё это делает ассистент.</p>
+            <ul class="list">
+              <li>Автоответы и “живой” тон</li>
+              <li>Сценарии под ваши объекты</li>
+              <li>Снижение нагрузки на агента</li>
+            </ul>
+          </article>
+
+          <article class="card" data-reveal>
+            <h3>Доводим до просмотра</h3>
+            <p>Не просто общаемся — ведём лида к записи и подтверждению встречи.</p>
+            <ul class="list">
+              <li>Квалификация: бюджет / сроки / район</li>
+              <li>Обработка возражений</li>
+              <li>Запись и подтверждение</li>
+            </ul>
+          </article>
+
+          <article class="card" data-reveal>
+            <h3>Прозрачная аналитика</h3>
+            <p>Понимаете, где “падает” воронка и что улучшать в рекламе/объявлениях.</p>
+            <ul class="list">
+              <li>Статусы лидов</li>
+              <li>Причины отказов</li>
+              <li>Ключевые вопросы клиентов</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="strip" data-reveal>
+          <div class="strip__left">
+            <div class="mono small">Интеграции</div>
+            <div class="strip__title">Подключаем за 1–3 дня</div>
+          </div>
+          <div class="strip__right">
+            <span class="chip">Telegram</span>
+            <span class="chip">WhatsApp</span>
+            <span class="chip">Avito</span>
+            <span class="chip">CRM</span>
+            <span class="chip">Google Sheets</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="cases" class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2">Отзывы клиентов</h2>
+          <p class="sub"></p>
+        </div>
+
+        <div class="quotes">
+          <figure class="quote" data-reveal>
+            <blockquote>
+              “Раньше лиды улетали в молоко. Сейчас ассистент отвечает мгновенно и доводит до просмотра.
+              Агентам стало легче.”
+            </blockquote>
+            <figcaption>
+              <span class="who">Агентство недвижимости, Рязань</span>
+              <span class="result">+18 просмотров/неделю</span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote" data-reveal>
+            <blockquote>
+              “Самое ценное — возражения. Люди ‘подумаю’ превращаются в конкретное время просмотра.”
+            </blockquote>
+            <figcaption>
+              <span class="who">Частный риелтор</span>
+              <span class="result">+27% лид→контакт</span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote" data-reveal>
+            <blockquote>
+              “Поставили в Telegram и на сайт. Воронка стала понятной: кто, почему и где отвалился.”
+            </blockquote>
+            <figcaption>
+              <span class="who">Небольшое агентство</span>
+              <span class="result">−35% рутины</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="ctaBox" data-reveal>
+          <div>
+            <div class="mono small">Хочешь так же?</div>
+            <div class="ctaBox__title">Покажем демо на твоих объектах</div>
+            <div class="ctaBox__sub">Без “воды”. 15 минут, сценарии + план внедрения.</div>
+          </div>
+          <a class="btn btn--solid" href="#contact">Запросить демо</a>
+        </div>
+      </div>
+    </section>
+
+   
+    <section id="about" class="section">
+  <div class="container about">
+
+    <!-- LEFT -->
+    <div class="about__left">
+      <h2 class="h2">Кто мы</h2>
+
+      <p class="about__lead">
+        Мы делаем ассистентов, которые не «болтают», а ведут клиента к действию.
+        Настраиваем под ваш город, объекты, стиль и бизнес-процесс.
+      </p>
+
+      <div class="about__cards">
+        <div class="about__card">
+          <div class="about__avatar">Д</div>
+          <div class="about__content">
+            <div class="about__name">Данил Леонтьев</div>
+            <div class="about__role">AI · Автоматизация · Воронки</div>
+            <div class="about__text">
+              Архитектура ассистентов, сценарии, воронка от лида до сделки.
+            </div>
+          </div>
+        </div>
+
+        <div class="about__card">
+          <div class="about__avatar">А</div>
+          <div class="about__content">
+            <div class="about__name">Алексей Литвинов</div>
+            <div class="about__role">Поддержка · Обслуживание · Стабильность</div>
+            <div class="about__text">
+              Обслуживание ассистента, контроль диалогов, доработки,
+              стабильная работа 24/7.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="about__note">
+        Команда из двух ролей: разработка и стабильная эксплуатация ассистентов.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="about__right">
+      <div class="about__step">
+        <span></span>
+        <div>
+          <div class="title">Аудит и цели</div>
+          <div class="text">Разбираем воронку: лид → контакт → просмотр → сделка.</div>
+        </div>
+      </div>
+
+      <div class="about__step">
+        <span></span>
+        <div>
+          <div class="title">Сценарии</div>
+          <div class="text">Квалификация, подборки, возражения, запись, догрев.</div>
+        </div>
+      </div>
+
+      <div class="about__step">
+        <span></span>
+        <div>
+          <div class="title">Запуск</div>
+          <div class="text">Подключаем каналы, тестируем, включаем аналитику.</div>
+        </div>
+      </div>
+
+      <div class="about__step">
+        <span></span>
+        <div>
+          <div class="title">Оптимизация</div>
+          <div class="text">Улучшения по данным: где отваливаются и почему.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section--alt">
+      <div class="container contact">
+        <div class="contact__left" data-reveal>
+          <h2 class="h2">Контакты</h2>
+          <p class="sub">
+            Напиши — покажем демо, скажем срок внедрения и как это увеличит конверсию именно у вас.
+          </p>
+
+          <div class="contact__list">
+            <div class="cRow">
+              <span class="mono small">Telegram</span>
+              <a href="https://t.me/your_username" target="_blank" rel="noreferrer">@leontiss</a>
+            </div>
+            <div class="cRow">
+              <span class="mono small">WhatsApp</span>
+              <a href="https://wa.me/70000000000" target="_blank" rel="noreferrer">+7 (995) 025 30 68</a>
+            </div>
+            <div class="cRow">
+              <span class="mono small">Email</span>
+              <a href="mailto:hello@yourdomain.com">peresvetnoname@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="mono small">
+            Предпочитаешь без звонков? Ок — просто оставь контакт и город/нишу.
+          </div>
+        </div>
+
+        <form class="form" data-reveal id="leadForm">
+          <div class="form__head">
+            <div class="mono small">Заявка</div>
+            <div class="form__title">Получить демо</div>
+          </div>
+
+          <label class="field">
+            <span>Имя</span>
+            <input name="name" type="text" placeholder="Как к вам обращаться" required />
+          </label>
+
+          <label class="field">
+            <span>Контакт (TG/телефон)</span>
+            <input name="contact" type="text" placeholder="@username или +7..." required />
+          </label>
+
+          <label class="field">
+            <span>Город и тип недвижимости</span>
+            <input name="city" type="text" placeholder="Напр.: Рязань, аренда / продажа" />
+          </label>
+
+          <label class="field">
+            <span>Сообщение</span>
+            <textarea name="message" rows="4" placeholder="Коротко: что болит? заявок мало / долго отвечают / сливы..."></textarea>
+          </label>
+
+          <button class="btn btn--solid" type="submit">Отправить</button>
+
+          <p class="fineprint">
+            Нажимая “Отправить”, вы соглашаетесь на обработку данных для связи. 
+          </p>
+
+          <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="mono small">© <span id="year"></span> RE:AI</div>
+      <div class="footer__links">
+        <a href="#product">Продукт</a>
+        <a href="#cases">Отзывы</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
