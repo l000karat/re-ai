@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, "public"))); // если site на �
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 
-app.get("/", (req, res) => {
-  res.send("OK ✅ Server is running");
+app.get("/health", (req, res) => {
+  res.type("text").send("OK");
 });
 
 app.post("/lead", async (req, res) => {
